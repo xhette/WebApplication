@@ -1,0 +1,63 @@
+﻿@model IEnumerable<WebApplication.Models.Classes.CommandTableItem>
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th class="text-center">
+                №
+            </th>
+            <th class="text-center">
+                Дата и время
+            </th>
+            <th class="text-center">
+                Команда
+            </th>
+            <th class="text-center">
+                Параметр 1
+            </th>
+            <th class="text-center">
+                Параметр 2
+            </th>
+            <th class="text-center">
+                Параметр 3
+            </th>
+            <th class="text-center">
+                Параметр 4
+            </th>
+            <th class="text-center">
+                Статус
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TimeCreated)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Parameter1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Parameter2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Parameter3)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Parameter4)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StateName)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,105 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    var anyErrors = ViewData.ModelState.Values.Where(v => v.Errors.Count != 0).Any();
+}
+@model WebApplication.Models.CommandRequestModel
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+{
+    if (anyErrors)
+    {
+        <div class="row input-form-row">
+            <div class="alert alert-danger">
+                <a class="close" data-dismiss="alert">×</a>
+                Заполните все необходимые поля
+            </div>
+        </div>
+    }
+    <div class="row input-form-row">
+        <h4>Отправка команды на терминал</h4>
+    </div>
+    <div class="row input-form-row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="terminals-list">ID Терминала(ов)</label>
+                <select id="terminals-list" class="form-control" multiple="multiple" size="12">
+                    @foreach (var item in Model.TerminalsList)
+                    {
+                        <option value="@item"> @item </option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div id="commands-container" class="col-md-6">
+            <div class="form-group">
+                <label for="commands-dropdown">Команда</label>
+                @Html.DropDownListFor(m => m.CommandId, new SelectList(Model.CommandTypeList, "Id", "Name"), new { @id = "commands-dropdown", @class = "form-control" })
+            </div>
+        </div>
+    </div>
+    <div class="row input-form-row">
+
+        @Html.HiddenFor(m => m.TerminalId, new { id = "terminalIdValue" })
+        @Html.HiddenFor(m => m.CommandId, new { id = "commandTypeValue" })
+        @Html.HiddenFor(m => m.CommandName, new { id = "commandNameValue" })
+        <div class="input-group">
+            @Html.HiddenFor(m => m.ParameterValue1, new { id = "parameter1Value" })
+        </div>
+        <div class="input-group">
+            @Html.HiddenFor(m => m.ParameterValue2, new { id = "parameter2Value" })
+        </div>
+        <div class="input-group">
+            @Html.HiddenFor(m => m.ParameterValue3, new { id = "parameter3Value" })
+        </div>
+        <div class="input-group">
+            @Html.HiddenFor(m => m.ParameterValue4, new { id = "parameter4Value" })
+        </div>
+        <div class="input-group">
+            @Html.HiddenFor(m => m.StrParameterValue1, new { id = "parameterStr1Value" })
+        </div>
+        <div class="input-group">
+            @Html.HiddenFor(m => m.StrParameterValue2, new { id = "parameterStr2Value" })
+        </div>
+        <div id="command-params-form" class="d-inline-flex">
+
+        </div>
+    </div>
+    <div class="row text-center input-form-row">
+        <button class="btn btn-secondary">Назад</button>
+        <button class="btn btn-primary" type="submit">Отправить</button>
+    </div>
+}
+
+<div class="row text-center input-form-row">
+    @{Html.RenderAction("GetCommandsTable", "Home");}
+</div>
+
+    <script type="text/javascript">
+    $(document).ready(function () {
+
+        var selectedId = $('#commands-dropdown').val();
+        $('#commandTypeValue').val(selectedId);
+        var selectedName = $('#commands-dropdown')[0].options[$('#commands-dropdown')[0].selectedIndex].text;
+        $('#commandNameValue').val(selectedName);
+
+        $('#commands-dropdown').change(function () {
+            var selectedId = $(this).val();
+            $('#commandTypeValue').val(selectedId);
+            var selectedName = $('#commands-dropdown')[0].options[$('#commands-dropdown')[0].selectedIndex].text;
+            $('#commandNameValue').val(selectedName);
+
+            $.ajax({
+                url: "@Url.Action("GetParametersInput", "Home")",
+                type: 'POST',
+                data: { "selectedId": selectedId }
+            }).done(function (data) {
+                $("#command-params-form").html(data);
+            });
+        })
+
+        $('#terminals-list').change(function () {
+            var selectedId = $(this).val();
+            $('#terminalIdValue').val(selectedId);
+        })
+    })
+    </script>

@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - приложение ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("VENDISTA", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+        <div class="navbar-collapse collapse navbar-right">
+            <ul class="nav navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link nav-icon-link" href="#"><i class="fa-regular fa-user"></i>Партнер</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-icon-link" href="#"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="body-content">
+        <div class="row">
+            <nav id="sidebar" class="col-md-2">
+                <ul class="nav sidebar-nav">
+                    <li class="nav-item">
+                        <a class="sidebar-nav-link nav-link nav-icon-link" href="#">Клиенты</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="sidebar-nav-link nav-link nav-icon-link" href="#">Пользователи</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="sidebar-nav-link nav-link nav-icon-link" href="#">Терминалы</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="sidebar-nav-link nav-link nav-icon-link" href="#">TID Банка</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="sidebar-nav-link nav-link nav-icon-link" href="#">Транзакции</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="sidebar-nav-link nav-link nav-icon-link" href="#">Логи терминалов</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="sidebar-nav-link nav-link nav-icon-link" href="#">Кассы</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="sidebar-nav-link nav-link nav-icon-link" href="#">Привязать терминалы к клиенту списком</a>
+                    </li>
+                </ul>
+            </nav>
+            <main class="col-md-10">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script src="https://kit.fontawesome.com/183f700d65.js" crossorigin="anonymous"></script>
+</body>
+</html>

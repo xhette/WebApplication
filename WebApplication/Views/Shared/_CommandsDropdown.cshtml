@@ -1,0 +1,11 @@
+﻿@model IEnumerable<WebApplication.Models.Classes.CommandTypeModel>
+
+    <select id="commands-dropdown">
+        @foreach (var item in Model)
+        {
+            <option value="@item.Id">
+                @item.Name
+            </option>
+
+        }
+    </select>

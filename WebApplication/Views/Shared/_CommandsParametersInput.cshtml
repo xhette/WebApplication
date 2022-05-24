@@ -1,0 +1,94 @@
+﻿@model WebApplication.Models.Classes.CommandTypeModel
+
+@if (!String.IsNullOrEmpty(Model.ParameterName1))
+{
+    <div class="form-group col-md-4 mb-2">
+        <label for="parameter1">@Model.ParameterName1</label>
+        <input Value="@Model.ParameterDefaultValue1" id="parameter1" name="@Model.ParameterName1" value="" class="form-control" />
+    </div>
+}
+
+@if (!String.IsNullOrEmpty(Model.ParameterName2))
+{
+    <div class="form-group col-md-4 mb-2">
+        <label for="parameter2">@Model.ParameterName2</label>
+        <input Value="@Model.ParameterDefaultValue2" id="parameter2" name="@Model.ParameterName2" value="" class="form-control" />
+    </div>
+}
+@if (!String.IsNullOrEmpty(Model.ParameterName3))
+{
+    <div class="form-group col-md-4 mb-2">
+        <label for="parameter3">@Model.ParameterName3</label>
+        <input Value="@Model.ParameterDefaultValue3" id="parameter3" name="@Model.ParameterName3" value="" class="form-control" />
+    </div>
+}
+@if (!String.IsNullOrEmpty(Model.ParameterName4))
+{
+    <div class="form-group col-md-4 mb-2">
+        <label for="parameter4">@Model.ParameterName4</label>
+        <input Value="@Model.ParameterDefaultValue4" id="parameter4" name="@Model.ParameterName4" value="" class="form-control" />
+    </div>
+}
+@if (!String.IsNullOrEmpty(Model.StrParameterName1))
+{
+    <div class="form-group col-md-4 mb-2">
+        <label for="str_parameter1">@Model.StrParameterName1</label>
+        <input Value="@Model.StrParameterDefaultValue1" id="str_parameter1" name="@Model.StrParameterName1" value="" class="form-control" />
+    </div>
+}
+@if (!String.IsNullOrEmpty(Model.StrParameterName2))
+{<div class="form-group col-md-4 mb-2">
+        <label for="str_parameter2">@Model.StrParameterName2</label>
+        <input Value="@Model.StrParameterDefaultValue2" id="str_parameter2" name="@Model.StrParameterName2" value="" class="form-control" />
+    </div>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var paremeter1 = $('#parameter1');
+        var paremeter2 = $('#parameter2');
+        var paremeter3 = $('#parameter3');
+        var paremeter4 = $('#parameter4');
+        var str_parameter1 = $('#str_parameter1');
+        var str_parameter2 = $('#str_parameter2');
+
+        $('#parameter1Value').val(paremeter1.val());
+        $('#parameter2Value').val(paremeter2.val());
+        $('#parameter3Value').val(paremeter3.val());
+        $('#parameter4Value').val(paremeter4.val());
+        $('#parameterStr1Value').val(str_parameter1.val());
+        $('#parameterStr2Value').val(str_parameter2.val());
+
+
+        paremeter1.on('input', function () {
+            var selected = $(this).val();
+            $('#parameter1Value').val(selected);
+        })
+
+        paremeter2.on('input', function () {
+            var selected = $(this).val();
+            $('#parameter2Value').val(selected);
+        })
+
+        paremeter3.on('input', function () {
+            var selected = $(this).val();
+            $('#parameter3Value').val(selected);
+        })
+
+        paremeter4.on('input', function () {
+            var selected = $(this).val();
+            $('#parameter4Value').val(selected);
+        })
+
+        str_parameter1.on('input', function () {
+            var selected = $(this).val();
+            $('#parameterStr1Value').val(selected);
+        })
+
+        str_parameter2.on('input', function () {
+            var selected = $(this).val();
+            $('#parameterStr2Value').val(selected);
+        })
+    })
+</script>
